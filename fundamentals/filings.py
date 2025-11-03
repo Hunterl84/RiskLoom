@@ -1,8 +1,6 @@
 import requests
 import webbrowser
 
-import requests
-import webbrowser
 
 def edgar(full_name: str, email: str, ticker: str, form: str, year: str):
     """
@@ -70,7 +68,7 @@ def edgar(full_name: str, email: str, ticker: str, form: str, year: str):
     if not CIK:
         raise Exception(f"Ticker {ticker} not found")
 
-    # --- Fetch EDGAR JSON ---
+    # --- Fetch EDGAR JSON --- #
     url_edgar = f"https://data.sec.gov/submissions/CIK{CIK}.json"
     response = requests.get(url_edgar, headers=headers)
     if response.status_code != 200:
@@ -84,7 +82,7 @@ def edgar(full_name: str, email: str, ticker: str, form: str, year: str):
     filing_docs = recent_filings['primaryDocument']
     accession_numbers = recent_filings['accessionNumber']
 
-    # --- Filter filings by year and form ---
+    # --- Filter filings by year and form --- #
     filtered_filings = [
         {"form": f, "date": d, "document": u, "accession": a}
         for f, d, u, a in zip(forms, dates, filing_docs, accession_numbers)
@@ -105,8 +103,3 @@ def edgar(full_name: str, email: str, ticker: str, form: str, year: str):
 
     # --- Open in browser ---
     webbrowser.open_new_tab(doc_url)
-
-
-def multi_edgar():
-
-    return 
