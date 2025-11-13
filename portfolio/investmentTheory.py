@@ -2,9 +2,9 @@ import yfinance as yf
 import pandas as pd
 
 
-def CAPM(risk_free_rate, beta, expected_market_return, expected_investment_return, FIND:str):
+def CAPM(risk_free_rate:float, beta:float, expected_market_return:float, expected_investment_return:float, FIND:str):
     """
-    Capital Asset Pricing Model (CAPM) calculator
+    Capital Asset Pricing Model (CAPM) calculator.
 
     Parameters:
     -----------
@@ -56,28 +56,33 @@ def CAPM(risk_free_rate, beta, expected_market_return, expected_investment_retur
             rm = rm * 100
             print(f"expected market return = {round(rm, 2)} %")
 
-def porftolioER(file:str, file_type:str):   #TODO: Fix the system and make sure the calculations are correct. 
+        case _ : 
+            print("Unkown Command for payment")
 
-    """ This is to test the porftlio ER
+
+
+# def porftolioER(file:str, file_type:str):   #TODO: Fix the system and make sure the calculations are correct. 
+
+#     """ This is to test the porftlio ER
     
-    Structure your file like this, Column A = Ammount put into stock, Column B = Expected Returns"""
-    match file_type:
+#     Structure your file like this, Column A = Ammount put into stock, Column B = Expected Returns"""
+#     match file_type:
 
 
-        case "xlsx":
+#         case "xlsx":
 
-            data = pd.read_excel(file, header=None)
-            print(data.shape)
-            print(data)
+#             data = pd.read_excel(file, header=None)
+#             print(data.shape)
+#             print(data)
 
-            invested = data[0]
-            er = data[1]
-            print(sum(invested*er))
+#             invested = data[0]
+#             er = data[1]
+#             print(sum(invested*er))
 
-        case "csv":
-            data = pd.read_csv(file, header=None)
-            print(data.shape)
-        case _:
-            print("Invalid file type")
-    return    
+#         case "csv":
+#             data = pd.read_csv(file, header=None)
+#             print(data.shape)
+#         case _:
+#             print("Invalid file type")
+#     return    
 

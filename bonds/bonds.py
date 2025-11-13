@@ -2,13 +2,31 @@
 
 
 def QuikBondCalc(quantity: int, market_value: float, coupon: float, YTM: float, years_to_maturity: int, payment: str):
-    """ This is to calculate the return on a bond at the time of investing
+    """
+    Calculates the present value, total value, and profit of bonds at the time of investment.
 
-        Quanitity, interager showing how many bonds are bought
+    Parameters:
+        quantity (int): Number of bonds being purchased.
+        market_value (float): Current market price of a single bond (scaled by 10 in the function, e.g., 101 → $1,010).
+        coupon (float): Annual coupon rate as a percentage (e.g., 5 → 5%).
+        YTM (float): Yield to maturity as a percentage (e.g., 6 → 6%).
+        years_to_maturity (int): Number of years until the bond matures.
+        payment (str): Frequency of coupon payments. Valid values are:
+                       "annual", "semi", "quarterly", "monthly".
 
-        face_value, float that is in percent. For example 101 → $1,010
+    Returns:
+        None: Prints detailed results including:
+            - Total number of payments
+            - Present value of coupon payments per bond
+            - Present value of principal per bond
+            - Total value of all bonds
+            - Market value of all bonds
+            - Total profit of the investment
 
-        Coupon, float 
+    Notes:
+        - Assumes a face value of $1,000 per bond, which is standard for most bonds.
+        - Market value is internally scaled by 10 for calculations.
+        - If an invalid payment frequency is entered, a message is printed and calculation is skipped.
     """
 
     # Annual / Basic Variables
