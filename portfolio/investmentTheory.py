@@ -86,3 +86,27 @@ def CAPM(risk_free_rate:float, beta:float, expected_market_return:float, expecte
 #             print("Invalid file type")
 #     return    
 
+def DDM(last_dividend:float, growth:float, required_rate_of_return:float):
+    
+    d = last_dividend
+    g = growth / 100
+    rr = required_rate_of_return / 100
+
+    cd = d * (1+g)
+    
+    cv = cd / (rr - g)
+
+    return print(f"Current Value of Stock: ${round(cv, 2)}")
+
+def DECOMP(reinvest:float, ROE:float, required_rate_of_return:float, earning_per_share:float):
+
+    rr = required_rate_of_return / 100
+    g = (ROE / 100) * (reinvest / 100)
+    print(f"Growth Rate: %{round(g * 100, 2)}")
+    pv = (earning_per_share * (1 - (reinvest / 100))) / (rr - g)
+    print(f"Present Value of Stock: ${round(pv, 2)}")
+
+    pvgo = pv - (earning_per_share / rr)
+    return print(f"Present Value of Growth Opportunities: ${round(pvgo, 2)}")
+
+DECOMP(reinvest=40, ROE=11, required_rate_of_return=13, earning_per_share=10)
