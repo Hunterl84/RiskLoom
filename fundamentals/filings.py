@@ -1,8 +1,10 @@
 import requests
 import webbrowser
+from bs4 import BeautifulSoup
+from edgar import set_identity
 
 
-def edgar(full_name: str, email: str, ticker: str, form: str, year: str):
+def edgar(full_name: str, email: str, ticker: str, form: str, year: str, view: str):
     """
     EDGAR Filing Search and Viewer
 
@@ -50,7 +52,11 @@ def edgar(full_name: str, email: str, ticker: str, form: str, year: str):
     )
     """
 
-    # --- Convert ticker to CIK ---
+    # --- Global Variables --- #
+    global doc_url
+    global headers
+
+    # --- Convert ticker to CIK --- #
     ticker = ticker.upper()
     url_ticker = "https://www.sec.gov/files/company_tickers.json"
     headers = {"User-Agent": f"{full_name} ({email})"}
@@ -101,5 +107,28 @@ def edgar(full_name: str, email: str, ticker: str, form: str, year: str):
     doc_url = f"https://www.sec.gov/Archives/edgar/data/{CIK}/{accession_clean}/{first_filing['document']}"
     print("Document URL:", doc_url)
 
-    # --- Open in browser ---
-    webbrowser.open_new_tab(doc_url)
+    match view:
+        case "Y":
+            return webbrowser.open_new_tab(doc_url), doc_url
+        case "N":
+            return doc_url
+    
+
+
+
+def edgarparse(website):
+
+    global headers
+    global doc_url
+
+    site = requests.get(url=doc_url, headers=headers)
+
+
+
+vtr = edgar(full_name="Hunter Latimer",
+            email="hunterl0825@gmail.com",
+            ticker="VTR",
+            form="10-K",
+            year="2024",
+            view="N")
+edgarparse(website=vtr)

@@ -1,4 +1,3 @@
-import yfinance as yf
 import pandas as pd
 
 
@@ -109,4 +108,3 @@ def DECOMP(reinvest:float, ROE:float, required_rate_of_return:float, earning_per
     pvgo = pv - (earning_per_share / rr)
     return print(f"Present Value of Growth Opportunities: ${round(pvgo, 2)}")
 
-DECOMP(reinvest=40, ROE=11, required_rate_of_return=13, earning_per_share=10)
